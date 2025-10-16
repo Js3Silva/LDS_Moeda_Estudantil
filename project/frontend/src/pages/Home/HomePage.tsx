@@ -10,7 +10,7 @@ export default function HomePage() {
           <Link to="/empresas">Empresas</Link>
         </li>
         <li>
-          <Link to="/clientes">Clientes</Link>
+          <Link to="/clientes">Alunos</Link>
         </li>
       </ul>
     </div>
