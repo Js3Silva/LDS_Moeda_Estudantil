@@ -15,10 +15,10 @@ export default function AppRoutes() {
         <Route path="/empresas/novo" element={<EmpresaForm />} />
         <Route path="/empresas/:id" element={<EmpresaForm />} />
         
-        {/* Rotas de Clientes */}
-        {/* <Route path="/clientes" element={<AlunoList />} />
-        <Route path="/clientes/novo" element={<AlunoForm />} />
-        <Route path="/clientes/:id" element={<AlunoForm />} /> */}
+        {/* Rotas de Alunos */}
+        {/* <Route path="/alunos" element={<AlunoList />} />
+        <Route path="/alunos/novo" element={<AlunoForm />} />
+        <Route path="/alunos/:id" element={<AlunoForm />} /> */}
       </Routes>
     </BrowserRouter>
   );
