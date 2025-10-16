@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import HomePage from "../pages/Home/HomePage";
-import EmpresaList from "../pages/Empresas/EmpresaList";
-import EmpresaForm from "../pages/Empresas/EmpresaForm";
+import { EmpresaList, EmpresaForm } from "../pages/Empresas";
 // import AlunoList from "../pages/Clientes/AlunoList";
 // import AlunoForm from "../pages/Clientes/AlunoForm";
 
