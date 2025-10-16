@@ -44,8 +44,9 @@ export default function EmpresaList() {
           <tr>
             <th>ID</th>
             <th>Nome</th>
-            <th>CNPJ</th>
-            <th>Endereço</th>
+            <th>email</th>
+            <th>senha</th>
+            <th>cnpj</th>
             <th>Ações</th>
           </tr>
         </thead>
@@ -55,7 +56,8 @@ export default function EmpresaList() {
               <td>{empresa.id}</td>
               <td>{empresa.nome}</td>
               <td>{empresa.cnpj}</td>
-              <td>{empresa.endereco}</td>
+              <td>{empresa.senha}</td>
+              <td>{empresa.email}</td>
               <td>
                 <Link to={`/empresas/${empresa.id}`} className="btn btn-sm btn-warning">Editar</Link>
                 <button

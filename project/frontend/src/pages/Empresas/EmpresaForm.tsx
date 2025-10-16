@@ -10,8 +10,9 @@ export default function EmpresaForm() {
   const [empresa, setEmpresa] = useState<Empresa>({
     id: 0,
     nome: "",
-    cnpj: "",
-    endereco: "",
+    email: "",
+    senha: "",
+    cnpj: ""
   });
 
   useEffect(() => {
@@ -65,15 +66,26 @@ export default function EmpresaForm() {
           />
         </div>
         <div className="form-group">
-          <label>Endereço:</label>
+          <label>Email:</label>
           <input
             type="text"
-            name="endereco"
-            value={empresa.endereco}
+            name="email"
+            value={empresa.email}
             onChange={handleChange}
             className="form-control"
           />
         </div>
+        <div className="form-group">
+          <label>Senha:</label>
+          <input
+            type="text"
+            name="senha"
+            value={empresa.senha}
+            onChange={handleChange}
+            className="form-control"
+          />
+        </div>
+
 
         <button type="submit" className="btn btn-success">
           Salvar
