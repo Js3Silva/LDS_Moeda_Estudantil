@@ -52,7 +52,6 @@ export default function EmpresaList() {
               <th>Nome</th>
               <th>CNPJ</th>
               <th>Email</th>
-              <th>Senha</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -63,18 +62,22 @@ export default function EmpresaList() {
                 <td>{empresa.nome}</td>
                 <td>{empresa.cnpj}</td>
                 <td>{empresa.email}</td>
-                <td>{empresa.senha}</td>
                 <td>
                   <Link to={`/empresas/${empresa.id}`} className="btn btn-edit">
-                    Editar
+                    <span className="material-symbols-outlined">
+                      edit
+                    </span>
                   </Link>
                   <button
                     onClick={() => handleDelete(empresa.id)}
                     className="btn btn-delete"
                   >
-                    Excluir
+                    <span className="material-symbols-outlined">
+                      delete
+                    </span>
                   </button>
                 </td>
+
               </tr>
             ))}
           </tbody>
