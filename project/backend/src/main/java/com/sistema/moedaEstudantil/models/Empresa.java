@@ -13,9 +13,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Empresa extends Usuario {
+public class Empresa extends Usuario {
 
-    @Column(name = "cnpj", length = 11, unique = true)
+    @Column(name = "cnpj", length = 18, unique = true)
     private String cnpj;
 
     public EmpresaDTO toDTO() {

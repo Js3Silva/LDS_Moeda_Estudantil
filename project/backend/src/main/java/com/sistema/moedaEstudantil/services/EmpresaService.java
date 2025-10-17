@@ -9,12 +9,16 @@ import com.sistema.moedaEstudantil.repositories.EmpresaRepository;
 import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class EmpresaService {
-
+    
+    @Autowired
     private final EmpresaRepository repository;
+    @Autowired
     private final PasswordEncoder passwordEncoder;
 
     public EmpresaService(EmpresaRepository repository, PasswordEncoder passwordEncoder) {
