@@ -17,6 +17,7 @@ services:
 
   backend:
     build: ./backend
+    platform: linux/arm64
     container_name: spring_backend
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/moeda_estudantil
