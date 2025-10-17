@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public record AlunoUpdateDTO(
     @NotBlank Long id,
-    @NotBlank String name,
+    @NotBlank String nome,
     @NotBlank String email,
     @NotBlank String senha,
     @NotBlank Endereco endereco

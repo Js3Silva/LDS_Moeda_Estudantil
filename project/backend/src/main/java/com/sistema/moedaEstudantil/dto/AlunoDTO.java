@@ -6,7 +6,7 @@ import com.sistema.moedaEstudantil.models.IMappable;
 
 public record AlunoDTO (
   Long id,
-  String name,
+  String nome,
   String email,
   String rg,
   String cpf,
