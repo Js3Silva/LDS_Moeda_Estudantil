@@ -15,20 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Aluno extends Usuario {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "name", length = 50, unique = false)
-    private String nome;
-
-    @Column(name = "email", length = 50, unique = true)
-    private String email;
-
-    @Column(name = "senha", length = 50, unique = false)
-    private String senha;
+public class Aluno extends Usuario {
 
     @Column(name = "cpf", length = 11, unique = true)
     private String cpf;
