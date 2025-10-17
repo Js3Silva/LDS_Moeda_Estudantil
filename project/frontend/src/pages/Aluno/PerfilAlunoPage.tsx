@@ -1,37 +1,73 @@
-import React, { useState } from "react";
-import ModalEdicaoPerfil from "../../components/ModalPerfilUsuario/ModalEdicaoPerfil"; // Correto
-import { Aluno } from "../../types/Aluno";
+import React, { useState, useEffect } from "react";
+import ModalEdicaoPerfil from "../../components/ModalPerfilUsuario/ModalEdicaoPerfil";
+import { Aluno, AlunoUpdate } from "../../types/Aluno";
+import { alunoService } from "../../services/alunoService";
 import "./PerfilAlunoPage.css";
 
 export default function PerfilAlunoPage() {
-  const [aluno, setAluno] = useState<Aluno>({
-    nome: "João da Silva",
-    email: "joao.silva@email.com",
-    quantidadeMoeda: 250,
-    cpf: "123.456.789-00",
-    rg: "12.345.678-9",
-    complemento: "",
-    endereco: {
-      logradouro: "Rua das Flores",
-      numero: "123",
-      bairro: "Jardim Primavera",
-      cidade: "São Paulo",
-      estado: "SP",
-      cep: "01234-567",
-      complemento: ""
-    },
-  });
-
+  const [aluno, setAluno] = useState<Aluno | null>(null);
+  const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleSave = (updatedAluno: Aluno) => {
-    setAluno(updatedAluno);
-    console.log("Dados salvos:", updatedAluno);
+  // Carregar dados do aluno logado
+  useEffect(() => {
+    const loadAlunoLogado = async () => {
+      try {
+        const alunoLogado = await alunoService.getAlunoLogado();
+        setAluno(alunoLogado);
+      } catch (error) {
+        console.error("Erro ao carregar dados do aluno:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadAlunoLogado();
+  }, []);
+
+  const handleSave = async (updatedAluno: AlunoUpdate) => {
+    try {
+      if (!aluno?.id) return;
+      
+      const alunoAtualizado = await alunoService.atualizar(aluno.id, updatedAluno);
+      setAluno(alunoAtualizado);
+      setIsModalOpen(false);
+      alert("Perfil atualizado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao atualizar perfil:", error);
+      alert("Erro ao atualizar perfil. Tente novamente.");
+    }
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  const handleLogout = async () => {
+    await alunoService.logout();
+    window.location.href = "/login";
+  };
+
+  if (loading) {
+    return <div className="loading">Carregando perfil...</div>;
+  }
+
+  if (!aluno) {
+    return (
+      <div className="perfil-container">
+        <div className="error-card">
+          <h2>Usuário não encontrado</h2>
+          <p>Faça login para acessar seu perfil.</p>
+          <button 
+            className="perfil-button"
+            onClick={() => window.location.href = "/login"}
+          >
+            Fazer Login
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="perfil-container">
@@ -63,12 +99,20 @@ export default function PerfilAlunoPage() {
           <p>CEP: {aluno.endereco.cep}</p>
         </div>
 
-        <button
-          className="perfil-button"
-          onClick={() => setIsModalOpen(true)}
-        >
-          Editar Perfil
-        </button>
+        <div className="perfil-actions">
+          <button
+            className="perfil-button"
+            onClick={() => setIsModalOpen(true)}
+          >
+            Editar Perfil
+          </button>
+          <button
+            className="perfil-button logout-button"
+            onClick={handleLogout}
+          >
+            Sair
+          </button>
+        </div>
       </div>
 
       <ModalEdicaoPerfil

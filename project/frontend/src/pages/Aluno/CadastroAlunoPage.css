@@ -45,7 +45,25 @@
   transition: all 0.3s ease;
   font-family: 'Segoe UI', sans-serif;
 }
-
+select{
+  padding: 14px 7px;
+  border-radius: 8px;
+  border: 2px solid #e0e7ff;
+  font-size: 16px;
+  background-color: #f8fafe;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
+}
+.cadastro-cidade{
+  width: 220px;
+  padding: 14px 7px;
+  border-radius: 8px;
+  border: 2px solid #e0e7ff;
+  font-size: 16px;
+  background-color: #f8fafe;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
+}
 .cadastro-input:focus {
   outline: none;
   border-color: #2c5aa0;

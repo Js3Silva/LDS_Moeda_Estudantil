@@ -4,6 +4,7 @@ import { EmpresaList, EmpresaForm } from "../pages/Empresas";
 import LoginAlunoPage from "../pages/Aluno/LoginAlunoPage";
 import CadastroAlunoPage from "../pages/Aluno/CadastroAlunoPage";
 import PerfilAlunoPage from "../pages/Aluno/PerfilAlunoPage"
+import AlunoList from "../pages/Aluno/AlunoList";
 
 export default function AppRoutes() {
   return (
@@ -20,6 +21,7 @@ export default function AppRoutes() {
         <Route path="/aluno/login" element={<LoginAlunoPage />} />
         <Route path="/aluno/novo" element={<CadastroAlunoPage />} />
         <Route path="/aluno" element={<PerfilAlunoPage />} />
+        <Route path="/alunos" element={<AlunoList />} />
       </Routes>
     </BrowserRouter>
   );

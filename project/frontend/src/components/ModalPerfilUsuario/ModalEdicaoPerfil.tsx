@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./ModalEdicaoPerfil.css";
-import { Aluno } from "../../types/Aluno";
+import { Aluno, AlunoUpdate } from "../../types/Aluno";
 
 interface ModalEdicaoPerfilProps {
   aluno: Aluno;
   isOpen: boolean;
   onClose: () => void;
-  onSave: (aluno: Aluno) => void;
+  onSave: (aluno: AlunoUpdate) => void;
 }
 
 const ModalEdicaoPerfil: React.FC<ModalEdicaoPerfilProps> = ({
@@ -15,11 +15,24 @@ const ModalEdicaoPerfil: React.FC<ModalEdicaoPerfilProps> = ({
   onClose,
   onSave,
 }) => {
-  const [formData, setFormData] = useState<Aluno>(aluno);
+  const [formData, setFormData] = useState<AlunoUpdate>({
+    id: aluno.id,
+    nome: aluno.nome,
+    email: aluno.email,
+    senha: "", // Campo de senha para atualização
+    endereco: { ...aluno.endereco }
+  });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    setFormData(aluno);
+    setFormData({
+      id: aluno.id,
+      nome: aluno.nome,
+      email: aluno.email,
+      senha: "", // Sempre começa vazio por segurança
+      endereco: { ...aluno.endereco }
+    });
+    setErrors({}); // Limpa os erros quando o aluno muda
   }, [aluno]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,6 +56,7 @@ const ModalEdicaoPerfil: React.FC<ModalEdicaoPerfilProps> = ({
       }));
     }
 
+    // Limpa o erro do campo quando o usuário começa a digitar
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -61,20 +75,12 @@ const ModalEdicaoPerfil: React.FC<ModalEdicaoPerfilProps> = ({
       newErrors.email = "Email inválido";
     }
 
-    if (!formData.cpf.trim()) {
-      newErrors.cpf = "CPF é obrigatório";
-    }
-
-    if (!formData.rg.trim()) {
-      newErrors.rg = "RG é obrigatório";
-    }
-
-    if (!formData.endereco.cep.trim()) {
-      newErrors['endereco.cep'] = "CEP é obrigatório";
+    if (formData.senha && formData.senha.length < 6) {
+      newErrors.senha = "Senha deve ter pelo menos 6 caracteres";
     }
 
     if (!formData.endereco.logradouro.trim()) {
-      newErrors['endereco.logradouro'] = "Logradouro é obrigatório";
+      newErrors['endereco.logradouro'] = "logradouro é obrigatória";
     }
 
     if (!formData.endereco.numero.trim()) {
@@ -93,6 +99,10 @@ const ModalEdicaoPerfil: React.FC<ModalEdicaoPerfilProps> = ({
       newErrors['endereco.estado'] = "Estado é obrigatório";
     }
 
+    if (!formData.endereco.cep.trim()) {
+      newErrors['endereco.cep'] = "CEP é obrigatório";
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -100,7 +110,12 @@ const ModalEdicaoPerfil: React.FC<ModalEdicaoPerfilProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      onSave(formData);
+      // Se a senha estiver vazia, remove do objeto para não atualizar
+      const dataToSave: AlunoUpdate = {
+        ...formData,
+        senha: formData.senha?.trim() === "" ? undefined : formData.senha
+      };
+      onSave(dataToSave);
     }
   };
 
@@ -116,6 +131,7 @@ const ModalEdicaoPerfil: React.FC<ModalEdicaoPerfilProps> = ({
         onClose();
       }
     };
+    
     document.addEventListener('keydown', handleEscKey);
     return () => document.removeEventListener('keydown', handleEscKey);
   }, [isOpen, onClose]);
@@ -160,32 +176,18 @@ const ModalEdicaoPerfil: React.FC<ModalEdicaoPerfilProps> = ({
               {errors.email && <span className="error-message">{errors.email}</span>}
             </div>
 
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="cpf">CPF</label>
-                <input
-                  type="text"
-                  id="cpf"
-                  name="cpf"
-                  value={formData.cpf}
-                  onChange={handleChange}
-                  className={errors.cpf ? 'error' : ''}
-                />
-                {errors.cpf && <span className="error-message">{errors.cpf}</span>}
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="rg">RG</label>
-                <input
-                  type="text"
-                  id="rg"
-                  name="rg"
-                  value={formData.rg}
-                  onChange={handleChange}
-                  className={errors.rg ? 'error' : ''}
-                />
-                {errors.rg && <span className="error-message">{errors.rg}</span>}
-              </div>
+            <div className="form-group">
+              <label htmlFor="senha">Nova Senha</label>
+              <input
+                type="password"
+                id="senha"
+                name="senha"
+                value={formData.senha || ''}
+                onChange={handleChange}
+                placeholder="Deixe em branco para manter a senha atual"
+                className={errors.senha ? 'error' : ''}
+              />
+              {errors.senha && <span className="error-message">{errors.senha}</span>}
             </div>
           </div>
 
@@ -215,13 +217,15 @@ const ModalEdicaoPerfil: React.FC<ModalEdicaoPerfilProps> = ({
                   value={formData.endereco.estado}
                   onChange={handleChange}
                   className={errors['endereco.estado'] ? 'error' : ''}
+                  maxLength={2}
+                  placeholder="SP"
                 />
                 {errors['endereco.estado'] && <span className="error-message">{errors['endereco.estado']}</span>}
               </div>
             </div>
 
             <div className="form-group">
-              <label htmlFor="logradouro">Logradouro</label>
+              <label htmlFor="logradouro">logradouro</label>
               <input
                 type="text"
                 id="logradouro"
@@ -229,6 +233,7 @@ const ModalEdicaoPerfil: React.FC<ModalEdicaoPerfilProps> = ({
                 value={formData.endereco.logradouro}
                 onChange={handleChange}
                 className={errors['endereco.logradouro'] ? 'error' : ''}
+                placeholder="Nome da logradouro, avenida, etc."
               />
               {errors['endereco.logradouro'] && <span className="error-message">{errors['endereco.logradouro']}</span>}
             </div>
@@ -253,9 +258,9 @@ const ModalEdicaoPerfil: React.FC<ModalEdicaoPerfilProps> = ({
                   type="text"
                   id="complemento"
                   name="endereco.complemento"
-                  value={formData.endereco.complemento}
+                  value={formData.endereco.complemento || ''}
                   onChange={handleChange}
-                  placeholder="Opcional"
+                  placeholder="Opcional (apto, bloco, etc.)"
                 />
               </div>
             </div>
