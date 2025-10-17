@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { empresaService } from "../../services/empresaService";
 import { Empresa } from "../../types/Empresa";
+import "./Empresas.css";
 
 export default function EmpresaList() {
   const [empresas, setEmpresas] = useState<Empresa[]>([]);
@@ -32,45 +33,56 @@ export default function EmpresaList() {
     }
   };
 
-  if (loading) return <p>Carregando empresas...</p>;
+  if (loading) return <p className="loading-text">Carregando empresas...</p>;
 
   return (
-    <div className="container">
-      <h2>Empresas</h2>
-      <Link to="/empresas/novo" className="btn btn-primary">Nova Empresa</Link>
-      
-      <table className="table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>email</th>
-            <th>senha</th>
-            <th>cnpj</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {empresas.map((empresa) => (
-            <tr key={empresa.id}>
-              <td>{empresa.id}</td>
-              <td>{empresa.nome}</td>
-              <td>{empresa.cnpj}</td>
-              <td>{empresa.senha}</td>
-              <td>{empresa.email}</td>
-              <td>
-                <Link to={`/empresas/${empresa.id}`} className="btn btn-sm btn-warning">Editar</Link>
-                <button
-                  className="btn btn-sm btn-danger"
-                  onClick={() => handleDelete(empresa.id)}
-                >
-                  Excluir
-                </button>
-              </td>
+    <div className="page-container">
+      <div className="list-card">
+        <div className="list-header">
+          <h2>Empresas Cadastradas</h2>
+          <Link to="/empresas/novo" className="btn btn-add">
+            Nova Empresa
+          </Link>
+        </div>
+
+        <table className="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>CNPJ</th>
+              <th>Email</th>
+              <th>Ações</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {empresas.map((empresa) => (
+              <tr key={empresa.id}>
+                <td>{empresa.id}</td>
+                <td>{empresa.nome}</td>
+                <td>{empresa.cnpj}</td>
+                <td>{empresa.email}</td>
+                <td>
+                  <Link to={`/empresas/${empresa.id}`} className="btn btn-edit">
+                    <span className="material-symbols-outlined">
+                      edit
+                    </span>
+                  </Link>
+                  <button
+                    onClick={() => handleDelete(empresa.id)}
+                    className="btn btn-delete"
+                  >
+                    <span className="material-symbols-outlined">
+                      delete
+                    </span>
+                  </button>
+                </td>
+
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
