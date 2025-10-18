@@ -1,5 +1,8 @@
 package com.sistema.moedaEstudantil.models;
 
+import com.sistema.moedaEstudantil.dto.AlunoDTO;
+import com.sistema.moedaEstudantil.dto.EmpresaDTO;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Aluno extends Usuario {
+public class Aluno extends Usuario {
 
     @Column(name = "cpf", length = 11, unique = true)
     private String cpf;
@@ -21,9 +24,18 @@ public abstract class Aluno extends Usuario {
     private String rg;
 
     @Column(name = "quantidadeMoeda", nullable = false)
-    protected int quantidadeMoeda;
+    protected float quantidadeMoeda;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "endereco_id", referencedColumnName = "id")
     private Endereco endereco;
+
+
+    public AlunoDTO toDTO() {
+        return new AlunoDTO(
+                id, nome, email, rg, cpf, quantidadeMoeda, endereco
+        );
+    }
+
+
 }
