@@ -1,9 +1,6 @@
 package com.sistema.moedaEstudantil.controllers;
 
-import com.sistema.moedaEstudantil.dto.EmpresaCreateDTO;
-import com.sistema.moedaEstudantil.dto.EmpresaDTO;
-import com.sistema.moedaEstudantil.dto.EmpresaUpdateDTO;
-import com.sistema.moedaEstudantil.dto.LoginDTO;
+import com.sistema.moedaEstudantil.dto.*;
 import com.sistema.moedaEstudantil.models.Empresa;
 import com.sistema.moedaEstudantil.services.EmpresaService;
 
@@ -72,14 +69,14 @@ public class EmpresaController {
     }
 
     @PutMapping("/atualizar/{id}")
-    public String atualizarEmpresa(@PathVariable Long id, @RequestBody EmpresaUpdateDTO empresaUpdateDTO) {
+    public ResponseEntity<?> atualizarEmpresa(@PathVariable Long id, @RequestBody EmpresaUpdateDTO empresaUpdateDTO) {
         Empresa empresaAtualizado = empresaService.atualizarEmpresa(id, empresaUpdateDTO);
 
         if (empresaAtualizado == null) {
-            return "Empresa nao encontrado";
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa não encontrada");
         }
 
-        return empresaAtualizado.toDTO().toString();
+        return ResponseEntity.ok(empresaAtualizado);
     }
 
     @GetMapping("/{id}")
@@ -94,14 +91,14 @@ public class EmpresaController {
     }
 
     @DeleteMapping("/deletar/{id}")
-    public String deletarEmpresa(@PathVariable Long id) {
+    public ResponseEntity<?> deletarEmpresa(@PathVariable Long id) {
         Empresa empresa = empresaService.getEmpresaById(id);
-        if (empresa != null) {
-            empresaService.deletarEmpresa(id);
-            return "Empresa deletado com sucesso";
+
+        if (empresa == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa não encontrada!");
         } else {
-            return "Empresa não encontrado";
+            empresaService.deletarEmpresa(id);
+            return ResponseEntity.ok().body("Empresa deletada com sucesso!");
         }
     }
-
 }
