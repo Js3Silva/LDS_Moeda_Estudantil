@@ -64,20 +64,15 @@ export default function EmpresaList() {
                 <td>{empresa.email}</td>
                 <td>
                   <Link to={`/empresas/${empresa.id}`} className="btn btn-edit">
-                    <span className="material-symbols-outlined">
-                      edit
-                    </span>
+                    <span className="material-symbols-outlined">edit</span>
                   </Link>
                   <button
                     onClick={() => handleDelete(empresa.id)}
                     className="btn btn-delete"
                   >
-                    <span className="material-symbols-outlined">
-                      delete
-                    </span>
+                    <span className="material-symbols-outlined">delete</span>
                   </button>
                 </td>
-
               </tr>
             ))}
           </tbody>

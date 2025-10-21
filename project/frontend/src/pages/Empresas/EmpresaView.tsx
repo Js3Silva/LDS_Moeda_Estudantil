@@ -1,17 +1,35 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { empresaService } from "../../services/empresaService";
+import { Empresa } from "../../types/Empresa";
 import "./Empresas.css";
 
-export default function EmpresaForm() {
+export default function EmpresaView() {
+  const { id } = useParams<{ id?: string }>();
   const navigate = useNavigate();
 
-  const [empresa, setEmpresa] = useState({
+  const [empresa, setEmpresa] = useState<Empresa>({
+    id: 0,
     nome: "",
-    email: "",
-    senha: "",
     cnpj: "",
+    email: "",
+    senha: ""
   });
+
+  useEffect(() => {
+    const carregarEmpresa = async () => {
+      if (id) {
+        try {
+          const dados = await empresaService.buscarPorId(Number(id));
+          setEmpresa(dados);
+        } catch (error) {
+          console.error("Erro ao carregar empresa:", error);
+          alert("Não foi possível carregar os dados da empresa.");
+        }
+      }
+    };
+    carregarEmpresa();
+  }, [id]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmpresa({ ...empresa, [e.target.name]: e.target.value });
@@ -19,20 +37,24 @@ export default function EmpresaForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!id) {
+      alert("ID inválido para edição.");
+      return;
+    }
     try {
-      await empresaService.salvar(empresa); 
-      alert("Empresa cadastrada com sucesso!");
+      await empresaService.atualizar(Number(id), empresa);
+      alert("Empresa atualizada com sucesso!");
       navigate("/empresas");
     } catch (error) {
-      console.error("Erro ao salvar empresa:", error);
-      alert("Erro ao salvar empresa. Verifique os dados e tente novamente.");
+      console.error("Erro ao atualizar empresa:", error);
+      alert("Erro ao atualizar empresa. Verifique os dados e tente novamente.");
     }
   };
 
   return (
     <div className="page-container">
       <div className="form-card">
-        <h2>Cadastrar Nova Empresa</h2>
+        <h2>Editar Empresa</h2>
         <form onSubmit={handleSubmit} className="form-layout">
           <div className="form-group">
             <label>Nome:</label>
