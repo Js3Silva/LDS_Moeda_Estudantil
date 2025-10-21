@@ -1,6 +1,7 @@
 package com.sistema.moedaEstudantil.controllers;
 
 import com.sistema.moedaEstudantil.dto.EmpresaCreateDTO;
+import com.sistema.moedaEstudantil.dto.EmpresaDTO;
 import com.sistema.moedaEstudantil.dto.EmpresaUpdateDTO;
 import com.sistema.moedaEstudantil.dto.LoginDTO;
 import com.sistema.moedaEstudantil.models.Empresa;
@@ -82,9 +83,14 @@ public class EmpresaController {
     }
 
     @GetMapping("/{id}")
-    public String getEmpresaById(@PathVariable Long id) {
+    public ResponseEntity<?> getEmpresaById(@PathVariable Long id) {
         Empresa empresa = empresaService.getEmpresaById(id);
-        return empresa != null ? empresa.toDTO().toString() : "Empresa não encontrado";
+
+        if (empresa == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa não encontrada");
+        }
+
+        return ResponseEntity.ok(empresa);
     }
 
     @DeleteMapping("/deletar/{id}")
