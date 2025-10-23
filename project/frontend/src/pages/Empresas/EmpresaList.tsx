@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { empresaService } from "../../services/empresaService";
 import { Empresa } from "../../types/Empresa";
 import "./Empresas.css";
+import EmpresaModal from "./EmpresaModal";
 
 export default function EmpresaList() {
   const [empresas, setEmpresas] = useState<Empresa[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const carregarEmpresas = async () => {
@@ -40,9 +42,9 @@ export default function EmpresaList() {
       <div className="list-card">
         <div className="list-header">
           <h2>Empresas Cadastradas</h2>
-          <Link to="/empresas/novo" className="btn btn-add">
+          <button className="btn btn-add" onClick={() => setIsModalOpen(true)}>
             Nova Empresa
-          </Link>
+          </button>
         </div>
 
         <table className="data-table">
@@ -78,6 +80,11 @@ export default function EmpresaList() {
           </tbody>
         </table>
       </div>
+      <EmpresaModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSuccess={() => console.log("Atualizar lista aqui")}
+      />
     </div>
   );
 }

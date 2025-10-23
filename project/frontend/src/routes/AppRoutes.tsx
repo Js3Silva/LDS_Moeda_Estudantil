@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "../pages/Home/HomePage";
-import { EmpresaList, EmpresaForm } from "../pages/Empresas";
+import { EmpresaList } from "../pages/Empresas";
 import LoginAlunoPage from "../pages/Aluno/LoginAlunoPage";
 import CadastroAlunoPage from "../pages/Aluno/CadastroAlunoPage";
 import PerfilAlunoPage from "../pages/Aluno/PerfilAlunoPage";
@@ -17,7 +17,6 @@ export default function AppRoutes() {
 
           {/* Rotas de Empresas */}
           <Route path="empresas" element={<EmpresaList />} />
-          <Route path="empresas/novo" element={<EmpresaForm />} />
           <Route path="empresas/:id" element={<EmpresaView />} />
 
           {/* Rotas de Alunos */}
