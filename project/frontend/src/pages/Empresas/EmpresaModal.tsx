@@ -2,20 +2,42 @@ import { useState } from "react";
 import { empresaService } from "../../services/empresaService";
 import Modal from "../../components/Modal";
 import "./Empresas.css";
+import { Empresa } from "../../types/Empresa";
+import { useEffect } from "react";
 
 interface EmpresaModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSuccess?: () => void; // para recarregar lista depois
+  onSuccess?: () => void;
+  empresaId?: number | null; 
 }
 
-export default function EmpresaModal({ isOpen, onClose, onSuccess }: EmpresaModalProps) {
-  const [empresa, setEmpresa] = useState({
+export default function EmpresaModal({ isOpen, onClose, onSuccess, empresaId }: EmpresaModalProps) {
+  const [empresa, setEmpresa] = useState<Empresa>({
+    id: 0,
     nome: "",
+    cnpj: "",
     email: "",
     senha: "",
-    cnpj: "",
   });
+
+  useEffect(() => {
+    const carregarEmpresa = async () => {
+      if (empresaId) {
+        try {
+          const dados = await empresaService.buscarPorId(empresaId);
+          setEmpresa(dados);
+        } catch (error) {
+          console.error("Erro ao carregar empresa:", error);
+          alert("Não foi possível carregar os dados da empresa.");
+        }
+      } else {
+        setEmpresa({ id: 0, nome: "", cnpj: "", email: "", senha: "" });
+      }
+    };
+
+    if (isOpen) carregarEmpresa();
+  }, [empresaId, isOpen]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmpresa({ ...empresa, [e.target.name]: e.target.value });
@@ -23,9 +45,16 @@ export default function EmpresaModal({ isOpen, onClose, onSuccess }: EmpresaModa
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     try {
-      await empresaService.salvar(empresa);
-      alert("Empresa cadastrada com sucesso!");
+      if (empresaId) {
+        await empresaService.atualizar(empresaId, empresa);
+        alert("Empresa atualizada com sucesso!");
+      } else {
+        await empresaService.salvar(empresa);
+        alert("Empresa cadastrada com sucesso!");
+      }
+
       onClose();
       onSuccess?.();
     } catch (error) {
@@ -35,7 +64,11 @@ export default function EmpresaModal({ isOpen, onClose, onSuccess }: EmpresaModa
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Cadastrar Nova Empresa">
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title={empresaId ? "Editar Empresa" : "Cadastrar Nova Empresa"}
+    >
       <form onSubmit={handleSubmit} className="form-layout">
         <div className="form-group">
           <label>Nome:</label>
@@ -54,7 +87,7 @@ export default function EmpresaModal({ isOpen, onClose, onSuccess }: EmpresaModa
 
         <div className="form-group">
           <label>Senha:</label>
-          <input type="password" name="senha" value={empresa.senha} onChange={handleChange} required />
+          <input type="password" name="senha" value={""} onChange={handleChange} required />
         </div>
 
         <div className="button-row">

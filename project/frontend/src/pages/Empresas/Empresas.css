@@ -17,6 +17,8 @@ h2 {
   text-align: center;
   margin-bottom: 20px;
   color: #000000;
+  margin-top: 10px;
+  margin-left: 5px;
 }
 
 /* Tabela */
@@ -30,7 +32,7 @@ h2 {
 .data-table td {
   border-bottom: 1px solid #e0e0e0;
   padding: 12px;
-  text-align: left;
+  text-align: center;
 }
 
 .data-table th {
@@ -56,10 +58,7 @@ h2 {
 
 .btn-add {
   background-color: #04448d;
-}
-
-.btn-success {
-  background-color: #28a745;
+  margin-right: 30px;
 }
 
 .btn-edit {
