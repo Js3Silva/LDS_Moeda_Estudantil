@@ -25,10 +25,6 @@ export default function HomePage() {
           </Link>
         </div>
       </div>
-
-      <footer className="footer">
-        © {new Date().getFullYear()} Sistema de Gestão | StudentCoins
-      </footer>
     </div>
   );
 }
