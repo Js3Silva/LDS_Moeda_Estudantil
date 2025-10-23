@@ -1,0 +1,24 @@
+.footer {
+  width: 100%;
+  background: linear-gradient(90deg, #004b9b, #0077ff);
+  color: #ffffff;
+  text-align: center;
+  padding: 1rem 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
+  margin-top: auto;
+  position: relative;
+  bottom: 0;
+}
+
+.footer p {
+  margin: 0;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.footer p:hover {
+  opacity: 1;
+}
