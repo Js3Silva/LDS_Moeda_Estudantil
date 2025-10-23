@@ -87,7 +87,7 @@ export default function EmpresaModal({ isOpen, onClose, onSuccess, empresaId }: 
 
         <div className="form-group">
           <label>Senha:</label>
-          <input type="password" name="senha" value={""} onChange={handleChange} required />
+          <input type="password" name="senha" value={empresa.senha} onChange={handleChange} required />
         </div>
 
         <div className="button-row">
