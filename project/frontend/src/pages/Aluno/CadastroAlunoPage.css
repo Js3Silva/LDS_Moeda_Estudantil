@@ -1,15 +1,13 @@
 .cadastro-container {
-  max-width: 400px;
+  max-width: 900px; /* aumentei a largura */
   margin: 120px auto 50px;
   padding: 40px 30px;
   border-radius: 12px;
   box-shadow: 0 8px 25px rgba(44, 90, 160, 0.15);
-  text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #ffffff 0%, #f8fafe 100%);
   border: 1px solid #e8f0fe;
   position: relative;
-  overflow: hidden;
 }
 
 .cadastro-container::before {
@@ -30,13 +28,36 @@
   text-align: center;
 }
 
+/* 🔹 Layout das seções lado a lado */
 .cadastro-form {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap; /* permite responsividade */
+  gap: 40px;
 }
 
-.cadastro-input {
+/* 🔹 Cada seção ocupa metade da largura */
+.form-section {
+  flex: 1;
+  min-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: left;
+}
+
+.form-section h3 {
+  color: #2c5aa0;
+  font-size: 20px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #e0e7ff;
+  padding-bottom: 5px;
+}
+
+.cadastro-input,
+select,
+.cadastro-cidade {
   padding: 14px 16px;
   border-radius: 8px;
   border: 2px solid #e0e7ff;
@@ -44,35 +65,14 @@
   background-color: #f8fafe;
   transition: all 0.3s ease;
   font-family: 'Segoe UI', sans-serif;
+  width: 100%;
 }
-select{
-  padding: 14px 7px;
-  border-radius: 8px;
-  border: 2px solid #e0e7ff;
-  font-size: 16px;
-  background-color: #f8fafe;
-  transition: all 0.3s ease;
-  font-family: 'Segoe UI', sans-serif;
-}
-.cadastro-cidade{
-  width: 220px;
-  padding: 14px 7px;
-  border-radius: 8px;
-  border: 2px solid #e0e7ff;
-  font-size: 16px;
-  background-color: #f8fafe;
-  transition: all 0.3s ease;
-  font-family: 'Segoe UI', sans-serif;
-}
+
 .cadastro-input:focus {
   outline: none;
   border-color: #2c5aa0;
   background-color: #ffffff;
   box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
-}
-
-.cadastro-input::placeholder {
-  color: #9ca3af;
 }
 
 .cadastro-button {
@@ -86,7 +86,9 @@ select{
   font-size: 16px;
   transition: all 0.3s ease;
   font-family: 'Segoe UI', sans-serif;
-  margin-top: 10px;
+  margin: 30px auto 0;
+  display: block;
+  width: 200px;
   box-shadow: 0 4px 12px rgba(44, 90, 160, 0.3);
 }
 
@@ -94,27 +96,4 @@ select{
   background: linear-gradient(135deg, #1e3d72 0%, #2c5aa0 100%);
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(44, 90, 160, 0.4);
-}
-
-.cadastro-button:active {
-  transform: translateY(0);
-}
-
-.cadastro-text {
-  margin-top: 25px;
-  font-size: 15px;
-  color: #6b7280;
-  text-align: center;
-}
-
-.cadastro-link {
-  color: #2c5aa0;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.cadastro-link:hover {
-  color: #4caf50;
-  text-decoration: underline;
 }

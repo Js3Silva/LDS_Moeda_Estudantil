@@ -213,6 +213,8 @@ export default function CadastroAlunoPage() {
             value={form.cpf} 
             onChange={handleChange} 
             required 
+            max={11}
+            minLength={11}
           />
           <input 
             className="cadastro-input" 
@@ -221,6 +223,8 @@ export default function CadastroAlunoPage() {
             value={form.rg} 
             onChange={handleChange} 
             required 
+            max={9}
+            minLength={9}
           />
         </div>
 
