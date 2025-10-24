@@ -18,10 +18,12 @@ export default function AppRoutes() {
           <Route path="empresas" element={<EmpresaList />} />
 
           {/* Rotas de Alunos */}
-          <Route path="aluno/login" element={<LoginAlunoPage />} />
+          <Route path="login" element={<LoginAlunoPage />} />
           <Route path="aluno/novo" element={<CadastroAlunoPage />} />
           <Route path="aluno" element={<PerfilAlunoPage />} />
           <Route path="alunos" element={<AlunoList />} />
+          <Route path="login" element={<LoginAlunoPage />} />
+
         </Route>
       </Routes>
     </BrowserRouter>
