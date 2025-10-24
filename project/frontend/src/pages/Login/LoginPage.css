@@ -100,3 +100,76 @@
   color: #4caf50;
   text-decoration: underline;
 }
+
+/* 🔹 Slider */
+.slider-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  background: #e8f0fe;
+  border-radius: 50px;
+  margin: 0 auto 30px;
+  width: 220px;
+  height: 45px;
+  align-items: center;
+  padding: 0 5px;
+  cursor: pointer;
+}
+
+.slider-option {
+  flex: 1;
+  text-align: center;
+  z-index: 2;
+  color: #2c5aa0;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  font-size: 15px;
+}
+
+.slider-option.active {
+  color: white;
+}
+
+.slider-thumb {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  width: 48%;
+  background: linear-gradient(135deg, #2c5aa0 0%, #3a6bc0 100%);
+  border-radius: 50px;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.slider-thumb.professor {
+  transform: translateX(100%);
+}
+
+/* 🔹 Acesso Admin */
+.admin-access {
+  margin-top: 20px;
+}
+
+.login-link.small {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.login-link.small:hover {
+  color: #2c5aa0;
+}
+/* 🔹 Barrinha de progresso */
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background-color: #e0e7ff;
+  border-radius: 6px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2c5aa0, #4caf50);
+  transition: width 0.2s ease;
+}
