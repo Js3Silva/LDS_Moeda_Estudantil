@@ -4,7 +4,7 @@ import "./LoginPage.css";
 import { Link } from "react-router-dom";
 
 export default function LoginPage() {
-  const [modo, setModo] = useState<"aluno" | "professor">("aluno");
+  const [modo, setModo] = useState<"aluno" | "empresa">("aluno");
   const [form, setForm] = useState({ email: "", senha: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -64,10 +64,10 @@ export default function LoginPage() {
           Aluno
         </span>
         <span
-          className={`slider-option ${modo === "professor" ? "active" : ""}`}
-          onClick={() => setModo("professor")}
+          className={`slider-option ${modo === "empresa" ? "active" : ""}`}
+          onClick={() => setModo("empresa")}
         >
-          Professor
+          Empresa
         </span>
         <div className={`slider-thumb ${modo}`}></div>
       </div>
@@ -109,14 +109,9 @@ export default function LoginPage() {
       )}
 
       {/* 🔹 Login Professor */}
-      {modo === "professor" && (
+      {modo === "empresa" && (
         <div className="professor-section">
-          <p className="login-text">Acesso rápido para professores:</p>
-          <Link to="/alunos">
-            <button className="login-button professor-btn">
-              Entrar como Professor
-            </button>
-          </Link>
+          
         </div>
       )}
     </div>
