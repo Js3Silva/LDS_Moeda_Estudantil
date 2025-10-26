@@ -1,6 +1,6 @@
 import React from "react";
-import { Aluno } from "../../types/Aluno";
-import "../../pages/Aluno/AlunoList";
+import { Aluno } from "../types/Aluno";
+import "../pages/Aluno/AlunoList";
 
 interface AlunoCardProps {
   aluno: Aluno;

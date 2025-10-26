@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Aluno } from "../../types/Aluno";
 import "./AlunoList.css";
-import AlunoCard from "../../components/AlunoCard/AlunoCard";
+import AlunoCard from "../../components/AlunoCard";
 import { alunoService } from "../../services/alunoService";
 
 export default function AlunoList() {
