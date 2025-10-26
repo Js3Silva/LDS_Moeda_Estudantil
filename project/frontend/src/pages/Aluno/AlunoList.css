@@ -1,0 +1,221 @@
+.aluno-list-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.aluno-list-header {
+  margin-bottom: 30px;
+  border-bottom: 2px solid #e8f0fe;
+  padding-bottom: 20px;
+}
+
+.aluno-list-header h1 {
+  color: #2c5aa0;
+  margin-bottom: 20px;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.aluno-list-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 300px;
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #2c5aa0;
+  box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+}
+
+.aluno-count {
+  color: #6b7280;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #6b7280;
+}
+
+.no-alunos {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.aluno-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
+}
+
+.aluno-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafe 100%);
+  border: 1px solid #e8f0fe;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(44, 90, 160, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.aluno-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #2c5aa0 0%, #4caf50 100%);
+}
+
+.aluno-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(44, 90, 160, 0.15);
+}
+
+.aluno-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 16px;
+}
+
+.aluno-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2c5aa0 0%, #3a6bc0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  box-shadow: 0 4px 8px rgba(44, 90, 160, 0.3);
+}
+
+.aluno-info h3 {
+  margin: 0 0 4px 0;
+  color: #2c5aa0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.aluno-info p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.aluno-details {
+  margin-bottom: 20px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-weight: 500;
+  color: #374151;
+  font-size: 14px;
+}
+
+.detail-value {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.moedas {
+  color: #4caf50;
+  font-weight: 600;
+}
+
+.aluno-endereco {
+  background: #f8fafe;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.aluno-endereco h4 {
+  margin: 0 0 12px 0;
+  color: #2c5aa0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.aluno-endereco p {
+  margin: 4px 0;
+  color: #4b5563;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.aluno-complemento {
+  background: #f0f9ff;
+  padding: 12px;
+  border-radius: 6px;
+  border-left: 4px solid #2c5aa0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .aluno-list-container {
+    padding: 16px;
+  }
+
+  .aluno-list-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-input {
+    min-width: auto;
+  }
+
+  .aluno-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .aluno-card-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}

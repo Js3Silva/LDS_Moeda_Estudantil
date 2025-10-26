@@ -1,9 +1,9 @@
 import { api } from "./api";
-import { Empresa } from "../types/Empresa";
+import { Empresa, EmpresaCreate, EmpresaUpdate } from "../types/Empresa";
 
 export const empresaService = {
   listar: async (): Promise<Empresa[]> => {
-    const response = await api.get("/empresas");
+    const response = await api.get("/empresas/all");
     return response.data;
   },
 
@@ -12,15 +12,15 @@ export const empresaService = {
     return response.data;
   },
 
-  salvar: async (empresa: Empresa): Promise<void> => {
-    await api.post("/empresas", empresa);
+  salvar: async (empresa: EmpresaCreate): Promise<void> => {
+    await api.post("/empresas/cadastrar", empresa);
   },
 
-  atualizar: async (id: number, empresa: Empresa): Promise<void> => {
-    await api.put(`/empresas/${id}`, empresa);
+  atualizar: async (id: number, empresa: EmpresaUpdate): Promise<void> => {
+    await api.put(`/empresas/atualizar/${id}`, empresa);
   },
 
   deletar: async (id: number): Promise<void> => {
-    await api.delete(`/empresas/${id}`);
+    await api.delete(`/empresas/deletar/${id}`);
   },
 };

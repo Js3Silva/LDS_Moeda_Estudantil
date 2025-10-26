@@ -16,39 +16,9 @@
 h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #333;
-}
-
-/* Formulário */
-.form-layout {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.form-group label {
-  font-weight: 600;
-  margin-bottom: 5px;
-  display: block;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  transition: border 0.3s;
-}
-
-.form-group input:focus {
-  border-color: #007b5e;
-  outline: none;
-}
-
-.button-row {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+  color: #000000;
+  margin-top: 10px;
+  margin-left: 5px;
 }
 
 /* Tabela */
@@ -62,7 +32,7 @@ h2 {
 .data-table td {
   border-bottom: 1px solid #e0e0e0;
   padding: 12px;
-  text-align: left;
+  text-align: center;
 }
 
 .data-table th {
@@ -87,20 +57,18 @@ h2 {
 }
 
 .btn-add {
-  background-color: #007b5e;
-}
-
-.btn-success {
-  background-color: #28a745;
+  background-color: #04448d;
+  margin-right: 30px;
 }
 
 .btn-edit {
-  background-color: #ffc107;
+  color: #000000;
   margin-right: 5px;
 }
 
 .btn-delete {
-  background-color: #dc3545;
+  color: #000000;
+  margin-right: 5px;
 }
 
 .btn-cancel {
@@ -121,4 +89,50 @@ h2 {
   text-align: center;
   margin-top: 30px;
   color: #666;
+}
+
+.form-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.button-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btn {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-success {
+  background-color: #0077cc;
+  color: white;
+}
+
+.btn-cancel {
+  background-color: #ccc;
+  color: black;
 }

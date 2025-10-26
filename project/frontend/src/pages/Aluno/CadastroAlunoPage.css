@@ -1,0 +1,99 @@
+.cadastro-container {
+  max-width: 900px; /* aumentei a largura */
+  margin: 120px auto 50px;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(44, 90, 160, 0.15);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafe 100%);
+  border: 1px solid #e8f0fe;
+  position: relative;
+}
+
+.cadastro-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #2c5aa0 0%, #4caf50 100%);
+}
+
+.cadastro-title {
+  margin-bottom: 30px;
+  color: #2c5aa0;
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* 🔹 Layout das seções lado a lado */
+.cadastro-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap; /* permite responsividade */
+  gap: 40px;
+}
+
+/* 🔹 Cada seção ocupa metade da largura */
+.form-section {
+  flex: 1;
+  min-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: left;
+}
+
+.form-section h3 {
+  color: #2c5aa0;
+  font-size: 20px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #e0e7ff;
+  padding-bottom: 5px;
+}
+
+.cadastro-input,
+select,
+.cadastro-cidade {
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 2px solid #e0e7ff;
+  font-size: 16px;
+  background-color: #f8fafe;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
+  width: 100%;
+}
+
+.cadastro-input:focus {
+  outline: none;
+  border-color: #2c5aa0;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+}
+
+.cadastro-button {
+  padding: 14px;
+  background: linear-gradient(135deg, #2c5aa0 0%, #3a6bc0 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 30px auto 0;
+  display: block;
+  width: 200px;
+  box-shadow: 0 4px 12px rgba(44, 90, 160, 0.3);
+}
+
+.cadastro-button:hover {
+  background: linear-gradient(135deg, #1e3d72 0%, #2c5aa0 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(44, 90, 160, 0.4);
+}
