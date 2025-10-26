@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { empresaService } from "../../services/empresaService";
 import { Empresa } from "../../types/Empresa";
-import "./Empresas.css";
 import EmpresaModal from "./EmpresaModal";
 
 export default function EmpresaList() {
@@ -45,51 +44,72 @@ export default function EmpresaList() {
     }
   };
 
-  if (loading) return <p className="loading-text">Carregando empresas...</p>;
+  if (loading)
+    return (
+      <p className="text-center text-gray-600 mt-10 text-lg">
+        Carregando empresas...
+      </p>
+    );
 
   return (
-    <div className="page-container">
-      <div className="list-card">
-        <div className="list-header">
-          <h2>Empresas Cadastradas</h2>
-          <button className="btn btn-add" onClick={abrirModalNova}>
+    <div className="max-w-5xl mx-auto mt-10 p-6 font-sans">
+      <div className="bg-white rounded-xl p-6 shadow-md">
+        {/* Cabeçalho */}
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-semibold text-gray-800">
+            Empresas Cadastradas
+          </h2>
+          <button
+            onClick={abrirModalNova}
+            className="bg-blue-800 text-white font-medium px-5 py-2 rounded-lg hover:bg-blue-900 transition-all duration-200"
+          >
             Nova Empresa
           </button>
         </div>
 
-        <table className="data-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nome</th>
-              <th>CNPJ</th>
-              <th>Email</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            {empresas.map((empresa) => (
-              <tr key={empresa.id}>
-                <td>{empresa.id}</td>
-                <td>{empresa.nome}</td>
-                <td>{empresa.cnpj}</td>
-                <td>{empresa.email}</td>
-                <td>
-                  <button className="btn btn-edit" onClick={() => abrirModalEditar(empresa.id)}>
-                    <span className="material-symbols-outlined">edit</span>
-                  </button>
-                  <button
-                    onClick={() => handleDelete(empresa.id)}
-                    className="btn btn-delete"
-                  >
-                    <span className="material-symbols-outlined">delete</span>
-                  </button>
-                </td>
+        {/* Tabela */}
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse mt-3">
+            <thead>
+              <tr className="bg-gray-100 text-gray-800">
+                <th className="p-3 font-semibold border-b text-center">ID</th>
+                <th className="p-3 font-semibold border-b text-center">Nome</th>
+                <th className="p-3 font-semibold border-b text-center">CNPJ</th>
+                <th className="p-3 font-semibold border-b text-center">Email</th>
+                <th className="p-3 font-semibold border-b text-center">Ações</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {empresas.map((empresa) => (
+                <tr
+                  key={empresa.id}
+                  className="hover:bg-gray-50 transition-colors"
+                >
+                  <td className="p-3 border-b text-center">{empresa.id}</td>
+                  <td className="p-3 border-b text-center">{empresa.nome}</td>
+                  <td className="p-3 border-b text-center">{empresa.cnpj}</td>
+                  <td className="p-3 border-b text-center">{empresa.email}</td>
+                  <td className="p-3 border-b text-center flex justify-center gap-3">
+                    <button
+                      onClick={() => abrirModalEditar(empresa.id)}
+                      className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md transition-all"
+                    >
+                      <span className="material-symbols-outlined">edit</span>
+                    </button>
+                    <button
+                      onClick={() => handleDelete(empresa.id)}
+                      className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md transition-all"
+                    >
+                      <span className="material-symbols-outlined">delete</span>
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
+
       <EmpresaModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
