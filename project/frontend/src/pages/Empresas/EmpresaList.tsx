@@ -1,23 +1,18 @@
 import { useEffect, useState } from "react";
 import { empresaService } from "../../services/empresaService";
 import { Empresa } from "../../types/Empresa";
-import EmpresaModal from "./EmpresaModal";
+// import EmpresaModal from "./EmpresaModal";
 
 export default function EmpresaList() {
   const [empresas, setEmpresas] = useState<Empresa[]>([]);
   const [loading, setLoading] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [empresaIdEdit, setEmpresaIdEdit] = useState<number | null>(null);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [empresaIdEdit, setEmpresaIdEdit] = useState<number | null>(null);
 
-  const abrirModalNova = () => {
-    setEmpresaIdEdit(null);
-    setIsModalOpen(true);
-  };
-
-  const abrirModalEditar = (id: number) => {
-    setEmpresaIdEdit(id);
-    setIsModalOpen(true);
-  };
+  // const abrirModalEditar = (id: number) => {
+  //   setEmpresaIdEdit(id);
+  //   setIsModalOpen(true);
+  // };
 
   useEffect(() => {
     const carregarEmpresas = async () => {
@@ -59,12 +54,6 @@ export default function EmpresaList() {
           <h2 className="text-2xl font-semibold text-gray-800">
             Empresas Cadastradas
           </h2>
-          <button
-            onClick={abrirModalNova}
-            className="bg-blue-800 text-white font-medium px-5 py-2 rounded-lg hover:bg-blue-900 transition-all duration-200"
-          >
-            Nova Empresa
-          </button>
         </div>
 
         {/* Tabela */}
@@ -76,7 +65,7 @@ export default function EmpresaList() {
                 <th className="p-3 font-semibold border-b text-center">Nome</th>
                 <th className="p-3 font-semibold border-b text-center">CNPJ</th>
                 <th className="p-3 font-semibold border-b text-center">Email</th>
-                <th className="p-3 font-semibold border-b text-center">Ações</th>
+                <th className="p-3 font-semibold border-b text-center">Excluir</th>
               </tr>
             </thead>
             <tbody>
@@ -91,12 +80,6 @@ export default function EmpresaList() {
                   <td className="p-3 border-b text-center">{empresa.email}</td>
                   <td className="p-3 border-b text-center flex justify-center gap-3">
                     <button
-                      onClick={() => abrirModalEditar(empresa.id)}
-                      className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md transition-all"
-                    >
-                      <span className="material-symbols-outlined">edit</span>
-                    </button>
-                    <button
                       onClick={() => handleDelete(empresa.id)}
                       className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md transition-all"
                     >
@@ -110,12 +93,12 @@ export default function EmpresaList() {
         </div>
       </div>
 
-      <EmpresaModal
+      {/* <EmpresaModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         empresaId={empresaIdEdit}
         onSuccess={() => console.log("Recarregar lista aqui")}
-      />
+      /> */}
     </div>
   );
 }

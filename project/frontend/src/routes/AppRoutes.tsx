@@ -6,13 +6,13 @@ import CadastroAlunoPage from "../pages/Aluno/CadastroAlunoPage";
 import PerfilAlunoPage from "../pages/Aluno/PerfilAlunoPage";
 import AlunoList from "../pages/Aluno/AlunoList";
 import Layout from "./Layout";
+import CadastroEmpresaPage from "../pages/Empresas/CadastroEmpresa";
 // import HomePageAluno from "../pages/Home/HomePageAluno";
 // import HomePageEmpresa from "../pages/Home/HomePageEmpresa";
 
 export default function AppRoutes() {
   const user = localStorage.getItem("user");
 
-  // 🔹 Escolhe a página inicial conforme o tipo de usuário
   let homeElement;
   if (user === "admin") {
     homeElement = <HomePage />;
@@ -33,6 +33,7 @@ export default function AppRoutes() {
 
           {/* Rotas de Empresas */}
           <Route path="empresas" element={<EmpresaList />} />
+          <Route path="empresa/novo" element={<CadastroEmpresaPage />} />
 
           {/* Rotas de Alunos */}
           <Route path="aluno/novo" element={<CadastroAlunoPage />} />
