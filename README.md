@@ -1,4 +1,4 @@
-## Sistema de Moeda Estudantil
+## Stuwards
 
 ### 📘 Visão Geral
 
