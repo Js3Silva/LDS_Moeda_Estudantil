@@ -2,6 +2,12 @@ import { api } from "./api";
 import { Empresa, EmpresaCreate, EmpresaUpdate } from "../types/Empresa";
 
 export const empresaService = {
+
+  login: async (loginDTO: { email: string; senha: string }): Promise<Empresa> => {
+    const response = await api.post("/empresas/login", loginDTO);
+    return response.data;
+  },
+
   listar: async (): Promise<Empresa[]> => {
     const response = await api.get("/empresas/all");
     return response.data;
