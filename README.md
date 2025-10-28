@@ -22,7 +22,22 @@ A **Release 1** compreende a primeira versão funcional do sistema, voltada à e
   - Aluno  
   - Empresa Parceira  
 - Desenvolver e integrar o front-end e o back-end desses módulos.  
-- Apresentar a arquitetura base e a camada de persistência do sistema.  
+- Apresentar a arquitetura base e a camada de persistência do sistema.
+
+### 🚀 Release 2 – Funcionalidades Avançadas e Integração
+
+A Release 2 abrange a ampliação das funcionalidades do sistema, com foco na implementação dos principais casos de uso relacionados ao envio de moedas, consulta de extrato e gerenciamento de vantagens.
+
+#### **Objetivos Principais**
+
+- Implementar os casos de uso de:
+  - Envio de moedas e consulta de extrato (professores e alunos)
+  - Cadastro e listagem de vantagens (empresa parceira e aluno)
+  - Troca de vantagens (aluno)
+- Elaborar os Diagramas de Sequência correspondentes.
+- Integrar as novas funcionalidades entre o front-end e o back-end.
+- Apresentar demonstração funcional dos módulos desenvolvidos.
+
 
 ## 🧩 Tecnologias Utilizadas
 
