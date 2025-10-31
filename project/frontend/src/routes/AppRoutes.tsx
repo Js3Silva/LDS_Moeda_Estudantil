@@ -7,6 +7,7 @@ import PerfilAlunoPage from "../pages/Aluno/PerfilAlunoPage";
 import AlunoList from "../pages/Aluno/AlunoList";
 import Layout from "./Layout";
 import CadastroEmpresaPage from "../pages/Empresas/CadastroEmpresa";
+import TransacaoPage from "../pages/Transacao/EnvioMoeda";
 // import HomePageAluno from "../pages/Home/HomePageAluno";
 // import HomePageEmpresa from "../pages/Home/HomePageEmpresa";
 
@@ -34,6 +35,9 @@ export default function AppRoutes() {
           {/* Rotas de Empresas */}
           <Route path="empresas" element={<EmpresaList />} />
           <Route path="empresa/novo" element={<CadastroEmpresaPage />} />
+
+          {/* Rota transaçãos */}
+          <Route path="transacoes" element={<TransacaoPage />} />
 
           {/* Rotas de Alunos */}
           <Route path="aluno/novo" element={<CadastroAlunoPage />} />
