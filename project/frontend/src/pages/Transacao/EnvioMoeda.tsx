@@ -24,7 +24,7 @@ export default function EnvioMoeda() {
     const aluno = alunos.find((a) => a.nome === nomeAluno);
 
     if (!aluno) {
-      setStatus("❌ Aluno não encontrado.");
+      setStatus("Aluno não encontrado.");
       return;
     }
 
@@ -53,10 +53,10 @@ export default function EnvioMoeda() {
         "npBATyLmsJ0WBjGuX"
       );
 
-      setStatus("✅ Moedas enviadas com sucesso!");
+      setStatus("Moedas enviadas com sucesso!");
       form.current.reset();
     } catch (error: any) {
-      setStatus("❌ Erro ao enviar e-mails: " + error.text);
+      setStatus("Erro ao enviar e-mails: " + error.text);
     }
   };
 
