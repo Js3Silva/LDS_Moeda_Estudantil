@@ -30,7 +30,7 @@ export default function AppRoutes() {
       <Routes>
         <Route path="/" element={<Layout />}>
           {/* Página inicial dinâmica */}
-          <Route index element={homeElement} />
+          <Route path="home" index element={homeElement} />
 
           {/* Rotas de Empresas */}
           <Route path="empresas" element={<EmpresaList />} />

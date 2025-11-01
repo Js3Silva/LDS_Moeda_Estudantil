@@ -122,7 +122,7 @@ export default function CadastroEmpresaPage() {
             </button>
             <button
               type="button"
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/home")}
               className="px-4 py-2 bg-gray-400 text-black rounded-md font-semibold hover:bg-gray-500 transition"
             >
               Cancelar
