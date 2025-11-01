@@ -26,6 +26,8 @@ export default function LoginPage() {
       // Login Admin
       if (form.email === adminCredenciais.email && form.senha === adminCredenciais.senha) {
         alert("Login de Admin realizado com sucesso!");
+        // localStorage.setItem("userId", response.id.toString());
+        localStorage.setItem("userType", "admin");
         window.location.href = "/home";
         return;
       }
@@ -35,6 +37,8 @@ export default function LoginPage() {
         const response = await alunoService.login(form);
         if (response.id) {
           alert("Login de Aluno realizado com sucesso!");
+          localStorage.setItem("userId", response.id.toString());
+          localStorage.setItem("userType", "aluno");
           window.location.href = "/aluno";
         } else {
           setError("Credenciais de aluno inválidas.");
@@ -46,7 +50,9 @@ export default function LoginPage() {
         const response = await empresaService.login(form);
         if (response.id) {
           alert("Login de Empresa realizado com sucesso!");
-          window.location.href = "/home"; 
+          window.location.href = "/home";
+          localStorage.setItem("userId", response.id.toString());
+          localStorage.setItem("userType", "empresa");
         } else {
           setError("Credenciais de empresa inválidas.");
         }
@@ -70,25 +76,22 @@ export default function LoginPage() {
       {/* Slider */}
       <div className="relative flex justify-between bg-[#e8f0fe] rounded-full w-[220px] mx-auto h-[45px] items-center px-1 mb-8 cursor-pointer">
         <span
-          className={`flex-1 text-center z-10 text-[#2c5aa0] font-semibold text-sm transition-colors ${
-            modo === "aluno" ? "text-[#ffffff]" : ""
-          }`}
+          className={`flex-1 text-center z-10 text-[#2c5aa0] font-semibold text-sm transition-colors ${modo === "aluno" ? "text-[#ffffff]" : ""
+            }`}
           onClick={() => setModo("aluno")}
         >
           Aluno
         </span>
         <span
-          className={`flex-1 text-center z-10 text-[#2c5aa0] font-semibold text-sm transition-colors ${
-            modo === "empresa" ? "text-[#ffffff]" : ""
-          }`}
+          className={`flex-1 text-center z-10 text-[#2c5aa0] font-semibold text-sm transition-colors ${modo === "empresa" ? "text-[#ffffff]" : ""
+            }`}
           onClick={() => setModo("empresa")}
         >
           Empresa
         </span>
         <div
-          className={`absolute top-1 bottom-1 w-[48%] bg-gradient-to-br from-[#2c5aa0] to-[#3a6bc0] rounded-full transition-transform ${
-            modo === "empresa" ? "translate-x-full" : ""
-          }`}
+          className={`absolute top-1 bottom-1 w-[48%] bg-gradient-to-br from-[#2c5aa0] to-[#3a6bc0] rounded-full transition-transform ${modo === "empresa" ? "translate-x-full" : ""
+            }`}
         ></div>
       </div>
 

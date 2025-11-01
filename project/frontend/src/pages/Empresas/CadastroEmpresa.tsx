@@ -47,7 +47,7 @@ export default function CadastroEmpresaPage() {
         await empresaService.salvar(empresa);
         alert("Empresa cadastrada com sucesso!");
       }
-      navigate("/empresas");
+      navigate("/");
     } catch (error) {
       console.error("Erro ao salvar empresa:", error);
       alert("Erro ao salvar empresa. Verifique os dados e tente novamente.");
@@ -122,7 +122,7 @@ export default function CadastroEmpresaPage() {
             </button>
             <button
               type="button"
-              onClick={() => navigate("/empresas")}
+              onClick={() => navigate("/")}
               className="px-4 py-2 bg-gray-400 text-black rounded-md font-semibold hover:bg-gray-500 transition"
             >
               Cancelar

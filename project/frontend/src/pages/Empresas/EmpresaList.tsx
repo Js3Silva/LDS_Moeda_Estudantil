@@ -1,18 +1,10 @@
 import { useEffect, useState } from "react";
 import { empresaService } from "../../services/empresaService";
 import { Empresa } from "../../types/Empresa";
-// import EmpresaModal from "./EmpresaModal";
 
 export default function EmpresaList() {
   const [empresas, setEmpresas] = useState<Empresa[]>([]);
   const [loading, setLoading] = useState(true);
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [empresaIdEdit, setEmpresaIdEdit] = useState<number | null>(null);
-
-  // const abrirModalEditar = (id: number) => {
-  //   setEmpresaIdEdit(id);
-  //   setIsModalOpen(true);
-  // };
 
   useEffect(() => {
     const carregarEmpresas = async () => {
@@ -92,13 +84,6 @@ export default function EmpresaList() {
           </table>
         </div>
       </div>
-
-      {/* <EmpresaModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        empresaId={empresaIdEdit}
-        onSuccess={() => console.log("Recarregar lista aqui")}
-      /> */}
     </div>
   );
 }

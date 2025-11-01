@@ -12,7 +12,7 @@ import TransacaoPage from "../pages/Transacao/EnvioMoeda";
 // import HomePageEmpresa from "../pages/Home/HomePageEmpresa";
 
 export default function AppRoutes() {
-  const user = localStorage.getItem("user");
+  const user = localStorage.getItem("userType");
 
   let homeElement;
   if (user === "admin") {
