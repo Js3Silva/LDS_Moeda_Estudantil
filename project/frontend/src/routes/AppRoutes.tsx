@@ -9,7 +9,7 @@ import Layout from "./Layout";
 import CadastroEmpresaPage from "../pages/Empresas/CadastroEmpresa";
 import TransacaoPage from "../pages/Transacao/EnvioMoeda";
 // import HomePageAluno from "../pages/Home/HomePageAluno";
-// import HomePageEmpresa from "../pages/Home/HomePageEmpresa";
+import HomePageEmpresa from "../pages/Home/HomePageEmpresa";
 
 export default function AppRoutes() {
   const user = localStorage.getItem("userType");
@@ -20,7 +20,7 @@ export default function AppRoutes() {
   } else if (user === "aluno") {
     // homeElement = <HomePageAluno />;
   } else if (user === "empresa") {
-    // homeElement = <HomePageEmpresa />;
+    homeElement = <HomePageEmpresa />;
   } else {
     homeElement = <LoginPage />;
   }

@@ -8,9 +8,13 @@ export default function EnvioMoeda() {
     { id: 3, nome: "Joaquim", email: "joaquim@email.com" },
   ];
 
-  const professorEmail = "professor@email.com";
+  const id = localStorage.getItem("userId");
+  const professorEmail = "";
+
   const form = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState("");
+
+  
 
   const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
